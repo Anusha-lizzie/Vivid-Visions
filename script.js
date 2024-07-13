@@ -7,9 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var modalImg = document.getElementById("img01");
     var captionText = document.getElementById("caption");
-    var images = document.querySelectorAll('#gallery img');
+    var galleryItems = document.querySelectorAll('#gallery .gallery-item');
     
-    images.forEach(image => {
+    galleryItems.forEach(item => {
+        var image = item.querySelector('img');
         image.onclick = function() {
             modal.style.display = "block";
             modalImg.src = this.src;
@@ -27,14 +28,15 @@ document.addEventListener('DOMContentLoaded', function() {
     filterButtons.forEach(button => {
         button.onclick = function() {
             var filter = this.getAttribute('data-filter');
-            images.forEach(image => {
+            galleryItems.forEach(item => {
+                var image = item.querySelector('img');
                 if (filter === 'all') {
-                    image.style.display = 'block';
+                    item.style.display = 'block';
                 } else {
                     if (image.getAttribute('data-category') === filter) {
-                        image.style.display = 'block';
+                        item.style.display = 'block';
                     } else {
-                        image.style.display = 'none';
+                        item.style.display = 'none';
                     }
                 }
             });

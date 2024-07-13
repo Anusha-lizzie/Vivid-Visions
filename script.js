@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     var modal = document.getElementById('myModal');
+
     if (!modal) {
         console.error('Modal element not found.');
         return;
@@ -23,10 +24,14 @@ document.addEventListener('DOMContentLoaded', function() {
     span.onclick = function() {
         modal.style.display = "none";
     }
+
     var filterButtons = document.querySelectorAll('#filters button');
 
     filterButtons.forEach(button => {
         button.onclick = function() {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
             var filter = this.getAttribute('data-filter');
             galleryItems.forEach(item => {
                 var image = item.querySelector('img');
